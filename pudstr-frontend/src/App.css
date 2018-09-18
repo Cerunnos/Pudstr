@@ -1,0 +1,39 @@
+.App {
+  text-align: center;
+}
+
+
+	body{
+		background-image: url('http://bryanortiz.me/bg6.jpg')
+	}
+
+	body, html{
+		height: 0%;
+	}
+
+.App-logo {
+  animation: App-logo-spin infinite 2s linear;
+  height: 70px;
+}
+
+.App-header {
+  background-color: #222;
+	background-image: url('http://bryanortiz.me/bg_header3.jpg');
+  height: 150px;
+  padding: 10px;
+  color: white;
+}
+
+.App-titles {
+	font-family: 'Black Han Sans';
+  font-size: 1.8em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
