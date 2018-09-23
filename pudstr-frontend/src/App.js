@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-// import MapContainer from './components/MapContainer'
 import './App.css';
 import './realappcssnotreally.css';
 
-import SEARCHFORM from './components/SearchForm';
+import SearchForm from './components/SearchForm';
 import MapContainer from './components/MapContainer';
 import {Route, Link} from 'react-router-dom';
 import UserLogin from './components/Userlogin';
 import Comments from './components/Comments';
+import {GoogleApiWrapper} from 'google-maps-react';
+import APIKEY from './components/Apikey'
+
 
 
 class App extends Component {
@@ -26,10 +28,8 @@ class App extends Component {
 
 		fetchLocations = () => {
 			let LOCATIONSURL =''
-
 			if (this.state.location){
-				LOCATIONSURL = `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${this.state.location.lat},${this.state.location.lng}&radius=2500&type=overall&keyword=restroom&key=AIzaSyB-QdrzvR2sNlHBYZQjLe59ADkfmjQ3oRY`
-
+				LOCATIONSURL = `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=${this.state.location.lat},${this.state.location.lng}&radius=2500&type=overall&keyword=restroom&key=${APIKEY}`
 				fetch(LOCATIONSURL)
 					.then(res => res.json())
 					.then(json => this.setTpLocation(json))
@@ -105,6 +105,7 @@ fetchComments=()=>{
 	}
 
   render() {
+		// console.log(SEARCHFORM)
     return (
       <div className="App">
 				<header className="App-header">
@@ -115,8 +116,7 @@ fetchComments=()=>{
 				<Route exact path="/" render={()=><UserLogin unlock={this.unlock} setAppUser={this.setAppUser} getUsers={this.getUsers}/>}/>
 				<div className="MainPage">
 					<div className="SeachForm">
-						<Route exact path="/dash" render={()=><SEARCHFORM grabLocation={this.grabLocation} locked={this.state.locked}
-						setSideNav={this.setSideNav}/>}/>
+						<Route exact path="/dash" render={()=><SearchForm grabLocation={this.grabLocation} locked={this.state.locked} setSideNav={this.setSideNav}/>}/>
 					</div>
 				<div className="ui divided items">{this.setMapContainer()}</div>
 				</div>
@@ -135,4 +135,7 @@ fetchComments=()=>{
   }
 }
 
-export default App;
+// export default App;
+export default GoogleApiWrapper({
+  apiKey: (APIKEY)
+})(App)

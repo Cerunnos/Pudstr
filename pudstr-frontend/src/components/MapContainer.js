@@ -33,14 +33,14 @@ export class MapContainer extends Component {
 
 
   render() {
-	// console.log(this.rerenderMap)
+	// console.log(APIKEY)
 	let locationMarkers = []
 	if (this.props.tpLocations.results){
 		 locationMarkers = this.props.tpLocations.results.map((location) => {
 			 return <Marker
 			 	key={location.id}
 			 	icon={{
-				 url: "http://bryanortiz.me/t2.png",
+				 url: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Bathroom-gender-sign.png/64px-Bathroom-gender-sign.png",
 				 anchor: new window.google.maps.Point(32,32),
 				 scaledSize: new window.google.maps.Size(64,64)
 			 	}}
@@ -69,7 +69,7 @@ export class MapContainer extends Component {
 					onClick={this.mainMarkerClick}
 					position={this.props.location}
 					icon={{
-						url: "http://bryanortiz.me/yahi1.png",
+						url: "http://bryanortiz.me/t2.png",
 						anchor: new window.google.maps.Point(32,32),
 						scaledSize: new window.google.maps.Size(64,64)
 				 	}}
@@ -92,6 +92,7 @@ export class MapContainer extends Component {
   }
 }
 
+// export default MapContainer
 export default GoogleApiWrapper({
   apiKey: (APIKEY)
 })(MapContainer)

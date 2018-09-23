@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
 import { Redirect } from 'react-router';
 // import { Button, Divider, Form } from 'semantic-ui-react'
+import {GoogleApiWrapper} from 'google-maps-react';
+import APIKEY from './Apikey'
 const BASE_URL = 'http://localhost:3000';
 
-export default class UserLogin extends Component{
+class UserLogin extends Component{
 	state={
 		input: '',
 		fireRedirect: false,
@@ -99,3 +101,8 @@ export default class UserLogin extends Component{
 		)
 	}
 }
+
+export default UserLogin
+// export default GoogleApiWrapper({
+//   apiKey: (APIKEY)
+// })(UserLogin)

@@ -2,9 +2,12 @@ import React, {Component} from 'react';
 import { Redirect } from 'react-router';
 import './searchform.css';
 // import { Button, Divider, Form } from 'semantic-ui-react'
+
+import {GoogleApiWrapper} from 'google-maps-react';
+import APIKEY from './Apikey'
 const BASE_URL = 'http://localhost:3000';
 
-export default class Comments extends Component{
+class Comments extends Component{
 
 	state={
 		text:'',
@@ -64,8 +67,6 @@ createComment=(event)=>{
 			</div>
 		})
 
-
-
 		return(
 			<div>
 				<h3>{this.props.matchTP.vicinity}</h3><br/>
@@ -85,3 +86,7 @@ createComment=(event)=>{
 		)
 	}
 }
+// export default Comments
+export default GoogleApiWrapper({
+  apiKey: (APIKEY)
+})(Comments)
